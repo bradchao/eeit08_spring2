@@ -3,6 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<style>
+			table {border-collapse: collapse; width:80%; margin:20px}
+			th, td {border: 1px solid #ddd; padding:8px; text-align:center}
+			th {background-color: #f2f2f2 }
+		</style>		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script>
 			$(document).ready(function(){
@@ -43,5 +48,21 @@
 		<div id="welcome"></div>
 		<img id="icon" />
 		<button id="logout">Logout</button>
+		<hr />
+		<table id="hotelTable">
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Name</td>
+					<td>Address</td>
+					<td>Tel</td>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		
+		
+		
+		
 	</body>
 </html>
