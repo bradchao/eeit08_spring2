@@ -27,4 +27,13 @@ public class MemberService {
 		return "註冊成功";
 	}
 	
+	public boolean login(String account, String passwd) {
+		Member member = memberRepository.findByAccount(account).orElse(null);
+		if (member != null && BCrypt.checkpw(passwd, member.getPasswd())) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 }

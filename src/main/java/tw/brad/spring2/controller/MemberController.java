@@ -50,4 +50,38 @@ public class MemberController {
 		return ResponseEntity.ok(response);
 	}
 	
+	/*
+	 * Request: {
+	 * 	account:xxx,
+	 * 	passwd:xxx
+	 * }
+	 * 
+	 * Response: {
+	 * 	success: true/false,
+	 * 	mesg: ''
+	 * }
+	 */
+	@PostMapping("/login")
+	public ResponseEntity<Map<String,Object>> login(
+			@RequestBody Map<String,String> body){
+		String account = body.get("account");
+		String passwd = body.get("passwd");
+		boolean isValid = memberService.login(account, passwd);
+		
+		Map<String,Object> response = new HashMap<>();
+		response.put("success", isValid);
+		response.put("mesg", isValid?"登入成功":"登入失敗");
+		
+		return ResponseEntity.ok(response);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
