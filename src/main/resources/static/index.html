@@ -39,7 +39,35 @@
 					});
 				});
 				
+				let nowPage = 0;
+				let totalPages = 0;
+				
+				function loadHotel(page, size){
+					$.ajax({
+						url: `/api/hotels/all?page=${page}&size=${size}`,
+						method: 'GET',
+						dataType: "json"
+					}).done(data => {
+						let tbody = $('#hotelTable tbody').empty();
+						data.content.forEach(hotel =>{
+							tbody.append(`
+								<tr>
+									<td>${hotel.id}</td>
+									<td>${hotel.name}</td>
+									<td>${hotel.addr}</td>
+									<td>${hotel.tel}</td>
+								</tr>
+							`);
+						});
+					});
+				}
+				
+				loadHotel(0,10);
+				
 			});
+			
+			
+			
 		</script>
 	</head>
 	<body>
