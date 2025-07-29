@@ -18,14 +18,38 @@
 		<script>
 			let account = document.getElementById("account");
 			let passwd = document.getElementById("passwd");
+			let mesg = document.getElementById("mesg");
 			account.addEventListener('blur', async () => {
 				if (account.value){
 					let url = "/api/members/exist?account=" + account.value; 
 					let res = await fetch(url);
-					let json = await res.json();
-					console.log(json)
+					let isExist = await res.json();
+					mesg.textContent = isExist?"帳號已使用, 換一個":"";
 				}
 			});
+			
+			let regForm = document.getElementById('regForm');
+			regForm.addEventListener('submit', async (e)=>{
+				e.preventDefault();
+				let data = {
+			      account:regForm.account.value,
+			      passwd: regForm.passwd.value,
+			      name : regForm.name.value						
+				};
+				
+				let url = "/api/members/register";
+				let res = await fetch(url, {
+					method: 'POST',
+					headers: {"Content-Type":"application/json"},
+					body: JSON.stringify(data)
+				});
+				let json = await res.json();
+				document.getElementById('result').textContent = json.message;
+				
+			});
+			
+			
+			
 		</script>
 		
 	</body>
