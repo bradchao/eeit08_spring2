@@ -1,6 +1,9 @@
 package tw.brad.spring2.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import tw.brad.spring2.entity.Member;
@@ -34,6 +37,23 @@ public class MemberService {
 		}
 		return false;
 	}
+	
+	public boolean loginV2(String account, String passwd) {
+		Member member = new Member();
+		member.setAccount(account);
+		
+		Example<Member> ex = Example.of(member);
+		if (memberRepository.exists(ex)) {
+			List<Member> members = memberRepository.findAll(ex);
+			if (BCrypt.checkpw(passwd, members.get(0).getPasswd())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
 	
 	
 }

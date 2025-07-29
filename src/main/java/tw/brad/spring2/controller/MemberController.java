@@ -66,7 +66,8 @@ public class MemberController {
 			@RequestBody Map<String,String> body){
 		String account = body.get("account");
 		String passwd = body.get("passwd");
-		boolean isValid = memberService.login(account, passwd);
+		
+		boolean isValid = memberService.loginV2(account, passwd);
 		
 		Map<String,Object> response = new HashMap<>();
 		response.put("success", isValid);
