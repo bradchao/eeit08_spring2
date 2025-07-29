@@ -21,6 +21,13 @@
 						}),
 						success: function(response){
 							console.log(response);
+							if (response.success){
+								// $('#result').text(response.mesg);
+								window.location.href = '/index.html';
+							}else{
+								$('#result').text(response.mesg);
+							}
+							
 						},
 						error: function(xhttp, status, error){
 							console.log(status);
