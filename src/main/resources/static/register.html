@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form id="regForm">
+			Account: <input id="account" required />
+				<span id="mesg" style="color: red"></span><br />
+			Password: <input type="password" id="passwd" required /><br />
+			Name: <input id="name" required /><br />
+			<input type="submit" value="Register" />
+		</form>	
+		<hr />
+		<div id="result"></div>
+		
+		<script>
+			let account = document.getElementById("account");
+			let passwd = document.getElementById("passwd");
+			account.addEventListener('blur', async () => {
+				if (account.value){
+					let url = "/api/members/exist?account=" + account.value; 
+					let res = await fetch(url);
+					let json = await res.json();
+					console.log(json)
+				}
+			});
+		</script>
+		
+	</body>
+</html>
