@@ -59,15 +59,28 @@
 								</tr>
 							`);
 						});
+						
+						nowPage = data.number;
+						totalPage = data.totalPages;
+						$('#page').text(`${nowPage + 1} / ${totalPage}`);
+
 					});
+					
+					
 				}
 				
 				loadHotel(0,10);
 				
+				$('#prev').click(() => {
+					if (nowPage > 0) loadHotel(nowPage - 1, 10);
+				});
+				
+				$('#next').click(() => {
+					if (nowPage+1 < totalPage) loadHotel(nowPage + 1, 10);
+				});
+				
+				
 			});
-			
-			
-			
 		</script>
 	</head>
 	<body>
@@ -76,6 +89,10 @@
 		<div id="welcome"></div>
 		<img id="icon" />
 		<button id="logout">Logout</button>
+		<hr />
+		<button id="prev">Prev</button>
+		<span id="page">1</span>
+		<button id="next">Next</button>
 		<hr />
 		<table id="hotelTable">
 			<thead>
