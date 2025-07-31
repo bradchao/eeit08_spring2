@@ -31,7 +31,7 @@ public class HotelController {
 		Pageable pageable = PageRequest.of(page, size);
 		Page<Hotel> pageHotel = hotelRepository.findAll(pageable);
 		
-		Map<String,String> response = new HashMap<String, String>();
+		//Map<String,String> response = new HashMap<String, String>();
 		
 		return ResponseEntity.ok(pageHotel);		
 	}
